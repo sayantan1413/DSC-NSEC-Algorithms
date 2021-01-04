@@ -29,38 +29,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 // A DP function to return the max value
-int max_value(int a[], int len[],
-					int mv, int n)
+int max_value(int a[], int len[],int mv, int n)
 {
 int ex_a[n+1][n+1];
 	if (n == 0 || mv == 0)
 	{
 		return 0;
 	}
-
-	// If the length of the beanpole is less than the maximum length, mv will consider it.
+    // If the length of the beanpole is less than the maximum length, mv will consider it.
 	if (len[n - 1] <= mv)
 	{
-		ex_a[n][mv]
-			= max(a[n - 1]
-					+ max_value(a, len,
-						mv - len[n - 1], n),
+		ex_a[n][mv]= max(a[n - 1]+ max_value(a, len,mv - len[n - 1], n),
 				max_value(a, len, mv, n - 1));
 	}
-
-	// If the length of the rod is greater than the inputted size,mv we will not consider it.
+    // If the length of the rod is greater than the inputted size,mv we will not consider it.
 	else
 	{
-		ex_a[n][mv]
-			= max_value(a, len,
-							mv, n - 1);
+		ex_a[n][mv]= max_value(a, len,mv, n - 1);
 	}
-
-
-	return ex_a[n][mv];
+    return ex_a[n][mv];
 }
-
-
 void solve() {
   //write your code here
   int n;
